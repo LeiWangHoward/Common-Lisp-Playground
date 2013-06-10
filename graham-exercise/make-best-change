@@ -1,0 +1,6 @@
+(defun make-best-change(payment &optional (coins '(25 10 5 1)))
+  (do ((coin coins (rest coin))
+       (owe-pay payment (mod owe-pay (car coin)))
+       (result nil (append result
+                          (list (floor owe-pay (car coin))))))
+      ((null coin) (values-list result))))

@@ -1,0 +1,12 @@
+h1 { background-color: blue; color: white; }
+
+#no-choice { font-style: italic; }
+
+div.row {background:#ffc;border:2px solid #ffc;margin:0 0 5px 0;float:left;width:100%;padding:6px 0;}
+div.row label {float:left;display:block;width:10em;font-weight:bold;padding:0 6px;}
+div.row label:hover {background:#FFFF66;cursor:pointer;}
+div.row fieldset {border:1px solid gray;margin:0 6px;}
+div.row fieldset span {display:block;}
+div.row fieldset span label {float:none;display:inline;}
+div.row fieldset legend {font-weight:bold;}
+div.requiredRow {border:2px solid #049;}

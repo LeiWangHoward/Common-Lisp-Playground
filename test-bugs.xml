@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+
+<bug-fixes>
+  <bug-fix title ="Nil printed to web browser" language="Allegro Common Lisp">
+    <symptoms>
+      <symptom>Function prints fine in debug window, but when using the aserve html
+macro, only nil is printed.</symptom>  
+    </symptoms>
+    <examples>
+      <example>(html
+  ((:pre )
+   (:princ (show-frame symbol))))
+      </example>
+    </examples>
+    <explanation>The show-frame function prints to *standard-output*, and not
+to *html-stream*.
+    </explanation>
+    <repairs>
+      <repair>
+        <precondition>Function prints to *standard-output* or another output
+stream which you know.
+        </precondition>
+        <action>Wrap printing code with (with-output-to-string (*output-stream*) ...)
+where *output-stream* is the stream that the function normally prints to.
+        </action>
+        <example>(html
+  ((:pre )
+   (:princ (with-output-to-string (*standard-output*)
+              (show-frame symbol)))))
+        </example>
+      </repair>
+    </repairs>
+  </bug-fix>
+
+  <bug-fix title="Class not found." language="Java">
+    <symptoms>
+      <symptom>Code compiles fine, but when trying to run, get an error that says:
+    "Exception in thread "main" java.lang.NoClassDefFoundError: ..."
+      </symptom>
+    </symptoms>
+    <examples>
+      <example>java MyClass</example>
+    </examples>
+    <explanation>The java interpreter cannot find your class.  This is a problem
+with the classpath, a variable which tells java where to find your classes.
+    </explanation>
+    <repairs>
+      <repair>
+        <precondition>Must be able to set system properties.</precondition>
+        <action>Set the system property "classpath" to point to where your java
+classes are.
+        </action>
+        <example>set classpath="."
+java MyClass></example>
+      </repair>
+      <repair>
+        <precondition>None.</precondition>
+        <action>Pass the classpath into the java interpreter.</action>
+        <example>java -classpath "." MyClass</example>
+      </repair>
+    </repairs>
+  </bug-fix>
+</bug-fixes>

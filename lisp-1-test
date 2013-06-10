@@ -1,0 +1,5 @@
+(defun has-number-p (lst)
+  (cond ((atom lst) (numberp lst))
+        ((some #'numberp
+                (if (listp (car lst)) (car lst) lst)) t)
+        (t (has-number-p (cdr lst)))))
